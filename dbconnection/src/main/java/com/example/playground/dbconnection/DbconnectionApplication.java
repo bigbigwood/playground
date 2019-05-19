@@ -25,18 +25,12 @@ public class DbconnectionApplication {
         props.setProperty("oracle.net.encryption_client", "REQUIRED");
         props.setProperty("oracle.net.encryption_types_client", "(AES256,AES192,AES128)");
 
-
-        OracleDataSource oracleDs = new OracleDataSource();
-        oracleDs.setURL(url);
-        oracleDs.setUser("c##test");
-        oracleDs.setPassword("123456");
-        oracleDs.setConnectionProperties(props);
-        // other Oracle related settings...
-
         HikariDataSource hikariDs = new HikariDataSource();
-        hikariDs.setDataSource(oracleDs);
-//        hikariDs.setConnectionInitSql("ALTER SESSION SET CURRENT_SCHEMA = MY_SCHEMA");
-
+        hikariDs.setJdbcUrl(url);
+        hikariDs.setUsername("c##test");
+        hikariDs.setPassword("123456");
+        hikariDs.setDataSourceProperties(props);
+//      hikariDs.setConnectionInitSql("ALTER SESSION SET CURRENT_SCHEMA = MY_SCHEMA");
         return hikariDs;
     }
 
